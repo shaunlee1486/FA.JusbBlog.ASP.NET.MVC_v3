@@ -1,0 +1,21 @@
+﻿@model IEnumerable<FA.JustBlog.Core.Models.Post>
+@{
+    ViewBag.Title = "ShowCategory";
+}
+
+<h2>ShowCategory</h2>
+
+@foreach (var item in Model)
+{
+    <div>
+        <div>
+            @Html.ActionLink(item.Title, "Details", "Post", new { year = item.PostedOn.Year, month = item.PostedOn.Month.ToString("00"), title = item.UrlSlug }, new { @style = "font-size: 30px; font-weight: bold;" })
+        </div>
+       <div>
+           <label style="font-style: italic">Posted @Html.DisplayFor(modelItem => item.PostedOn) with rate @Html.DisplayFor(modelItem => item.RateCount) by @Html.DisplayFor(modelItem => item.ViewCount)view(s)</label>
+           <div>@Html.DisplayFor(modelItem => item.ShortDescription)</div>
+       </div>   
+    </div>
+    <hr />
+}
+

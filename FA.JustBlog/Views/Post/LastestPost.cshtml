@@ -1,0 +1,15 @@
+﻿@model IEnumerable<FA.JustBlog.Core.Models.Post>
+
+@{
+    ViewBag.Title = "LastestPost";
+}
+
+<h2>LastestPost</h2>
+@foreach (var item in Model)
+{
+    <div>
+        <a href="@Url.Action("Details", "Post", new {id = item.Id})"><h3>@Html.DisplayFor(modelItem => item.Title)</h3></a>       
+        <p>@Html.DisplayFor(modelItem => item.ShortDescription)</p>
+    </div>
+}
+

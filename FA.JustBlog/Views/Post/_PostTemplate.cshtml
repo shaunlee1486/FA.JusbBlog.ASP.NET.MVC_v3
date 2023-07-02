@@ -1,0 +1,8 @@
+﻿@model FA.JustBlog.Core.Models.Post
+
+
+<li class="w3-padding-16" style="text-overflow: ellipsis; list-style-position: inside; overflow: hidden; white-space: nowrap; ">
+    <span style="padding-bottom: 20px">@Model.Title</span><br>
+    <span class="w3-opacity" style="white-space: nowrap">Posted @Html.DisplayFor(model => model.PostedOn)</span><br />
+    <span class="w3-opacity">Viewed @Model.ViewCount time(s) with rate @Model.Rate</span>
+</li>

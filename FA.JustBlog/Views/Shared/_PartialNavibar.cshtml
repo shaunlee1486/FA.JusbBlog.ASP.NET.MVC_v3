@@ -1,0 +1,33 @@
+﻿<div class="container">
+    <a class="navbar-brand" href="@Url.Action("Index", "Home")">Just Blog</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("Index", "Home")">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("Index", "About")">About</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("ShowCategory", "Post", new { category = "Entity Framework"})">Entity Framework</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("ShowCategory", "Post", new { category = "MVC"})">MVC</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("Index", "Contact")">Contact</a>
+            </li>
+            @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+            {
+                @*<li>@Html.ActionLink("Goto->Admin", "Index", "ManagePost", new {Area = "Admin"}, new {@style = "color: red"})</li>*@
+                @*<li>@Html.ActionLink("RolesAdmin", "Index", "RolesAdmin")</li>
+                        <li>@Html.ActionLink("UsersAdmin", "Index", "UsersAdmin")</li>*@
+            }
+        </ul>
+        @Html.Partial("_LoginPartial")
+    </div>
+</div>

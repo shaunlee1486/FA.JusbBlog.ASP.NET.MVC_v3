@@ -1,0 +1,30 @@
+﻿@model IEnumerable<FA.JustBlog.Core.Models.Post>
+@using FA.JustBlog.Core.Models;
+
+<div class="w3-card" style="margin-bottom: 20px">
+    <div class="w3-white ">
+        @if (ViewBag.PartialName != null)
+        {
+            <h3 class="w3-padding">@ViewBag.PartialName</h3>
+        }
+        else
+        {
+            <h3>All posts!</h3>
+        }
+        <hr />
+        @if (Model.Count() > 0)
+        {
+            <ul class="w3-ul w3-hoverable w3-white">
+                @foreach (Post postModel in Model)
+                {
+                    @Html.Partial("_PostTemplate", postModel)
+                }
+            </ul>
+        }
+        else
+        {
+            <p>No posts found!</p>
+        }
+
+    </div>
+</div>

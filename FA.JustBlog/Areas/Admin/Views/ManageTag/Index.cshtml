@@ -1,0 +1,50 @@
+﻿@model  IPagedList<FA.JustBlog.Core.Models.Tag>
+@using GridMvc.Html
+@using PagedList.Mvc
+@using PagedList
+@{
+    ViewBag.Title = "Tag";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<!-- Breadcrumbs-->
+<h4>@Html.ActionLink("Add New Tag", "Create", "ManageTag", new { id = "btn-create" })</h4>
+<div class="card mb-3">
+    <div class="card-header">
+        <i class="fas fa-table"></i>
+        Data Table Tag
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            @Html.Grid(Model).Columns(column =>
+       {
+           column.Add(model => model.Name).SetWidth(200).Titled("Name");
+           column.Add(model => model.Count).SetWidth(100).Titled("Count");
+           column.Add(model => model.UrlSlug).SetWidth(100).Titled("UrlSlug");
+           column.Add(model => model.Description).SetWidth(200).Titled("Description");
+           column.Add().Encoded(false).Sanitized(false).SetWidth(50).RenderValueAs(o => Html.ActionLink("Edit", "Edit", "ManageTag", new { name = o.Name }, new { @class = "btn btn-primary btn-edit" }) + "" + Html.ActionLink("Delete", "Delete", "ManageTag", new { name = o.Name }, new { @class = "btn btn-danger btn-delete" }) + Html.ActionLink("Download", "ShipExportToExcel", "ManageTag", new { @class = "btn btn-info btn-detail" })).Titled("#");
+
+       }).WithPaging(3).Sortable(true)
+        </div>
+        @Html.PagedListPager(Model, i => Url.Action("Index", "ManageTag", new { i }), new PagedListRenderOptions { LiElementClasses = new string[] { "page-item" } })
+    </div>
+    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+</div>
+
+@section Scripts{
+<script>
+    $('table tbody tr td:nth-child(5)').addClass('btn-group btn-group-sm');
+    $('ul.pagination li a').addClass('page-link');
+    var userRole = '@(User.IsInRole("User") ? "true" : "false")';
+    if (userRole == "true") {
+        $("#btn-create").remove();
+        $(".btn-edit").remove();
+        $(".btn-delete").remove();
+    }
+
+    var contributorRole = '@(User.IsInRole("Contributor") ? "true" : "false")';
+    if (contributorRole == "true") {
+        $(".btn-delete").remove();
+    }
+</script>
+}
+

@@ -1,0 +1,25 @@
+﻿@model FA.JustBlog.Core.Models.Post
+@using FA.JustBlog.Framework.Extensions
+
+@{
+    ViewBag.Title = "JustBlog - " + Model.Title;
+}
+
+<div>
+    <div><h3>@Html.DisplayFor(model => model.Title)</h3></div>
+    <div>
+        <i> Posted @Html.DisplayRelativeDateTime(Model.PostedOn) Viewed @Model.ViewCount time(s) with Rate @Model.Rate</i>
+        <br /><span>Category: @Html.CategoryLink(Model.Category)</span>
+        <br /><i>@Html.PostTags(Model)</i> 
+        
+    </div>
+    <br />
+    <div>
+        @Html.DisplayFor(model => model.PostContent)
+        <br />
+    </div>
+</div>
+@*<h2>@Model.Title</h2>
+<p>@Model.PostContent</p>*@
+
+

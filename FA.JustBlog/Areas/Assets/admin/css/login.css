@@ -1,0 +1,14 @@
+﻿.bg-gradient-primary {
+    background-image: url('../img/Itachi-Attempt.png');
+    background-position: center;
+    background-size: cover;
+}
+.bg-login-image {
+    background: url('../img/itachi2.jpg');
+    background-position: center;
+    background-size: cover;
+}
+
+.opacity{
+    opacity: 0.85;
+}
